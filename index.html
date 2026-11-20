@@ -6,27 +6,18 @@
     <title>EnferComp - Redes Sociales y Salud</title>
     <style>
         :root {
-            --bg-color: #01b981;          /* Fondo exterior neutro muy suave */
-            --card-bg: #ffffff;           /* Tarjeta principal clara y legible */
-            --surface-soft: #f8faf9;      /* Superficie secundaria neutra */
-            --surface-accent: #e6f0ec;    /* Acento suave salud/digital */
-            --border-color: #cbd5e1;
-            --primary: #0f766e;           /* Verde azulado clínico sobrio */
-            --primary-hover: #0d9488;
-            --primary-soft: #f0fdfa;
-            --success: #16a34a;
-            --danger: #dc2626;
-            --warning: #d97706;
-            --text: #000000;              /* Texto oscuro de alto contraste */
-            --text-muted: #475569;
+            --bg-color: #0b1120;
+            --card-bg: #1e293b;
+            --accent: #38bdf8;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --text: #f8fafc;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--bg-color);
-            background-image:
-                radial-gradient(circle at 15% 15%, rgba(15, 118, 110, 0.05) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(100, 116, 139, 0.06) 0%, transparent 45%);
             color: var(--text);
             display: flex;
             justify-content: center;
@@ -37,210 +28,60 @@
         .app-container {
             background-color: var(--card-bg);
             width: 100%;
-            max-width: 460px;
+            max-width: 480px;
             border-radius: 22px;
             padding: 22px;
-            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-            border: 1px solid var(--border-color);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .header { text-align: center; margin-bottom: 14px; }
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 6px;
-        }
+        .header { text-align: center; margin-bottom: 16px; }
         .badge-app {
             display: inline-block;
-            background: var(--surface-accent);
-            color: #1f5c56;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent);
             font-weight: 700;
-            font-size: 12px;
+            font-size: 13px;
             padding: 4px 12px;
             border-radius: 999px;
-            border: 1px solid #cce0da;
+            margin-bottom: 6px;
         }
-        .audio-btn {
-            background: var(--surface-soft);
-            border: 1px solid var(--border-color);
-            color: var(--text);
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 999px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .audio-btn:hover {
-            border-color: var(--primary);
-            background: var(--primary-soft);
-        }
-        h1 { font-size: 20px; color: var(--text); }
+        h1 { font-size: 20px; color: #ffffff; }
         .image-frame {
             width: 100%;
-            height: 145px;
-            background-color: var(--surface-soft);
+            height: 150px;
+            background-color: #0f172a;
             border-radius: 14px;
             overflow: hidden;
-            margin: 10px 0;
+            margin: 12px 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            transition: border-color 0.3s;
         }
-        .image-frame img { width: 100%; height: 100%; object-fit: contain; background: var(--surface-soft); }
-        .logo-frame {
-            width: 100%;
-            height: 120px;
-            background-color: var(--surface-soft);
-            border-radius: 14px;
-            margin: 8px 0 6px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 8px;
-            border: 1px solid var(--border-color);
-        }
-        .logo-frame img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        .register-title {
-            text-align: center;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-        .mode-selector {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-        .mode-card {
-            background: var(--surface-soft);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 10px;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .mode-card:hover {
-            border-color: var(--primary);
-            background: var(--primary-soft);
-        }
-        .mode-card.active {
-            border-color: var(--primary);
-            background: var(--primary-soft);
-            box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.16);
-        }
-        .mode-card strong {
-            display: block;
-            font-size: 13px;
-            color: var(--text);
-            margin-bottom: 2px;
-        }
-        .mode-card span {
-            display: block;
-            font-size: 11px;
-            color: var(--text-muted);
-            line-height: 1.3;
-        }
+        .image-frame img { width: 100%; height: 100%; object-fit: cover; }
         .stats-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 6px;
-            background: var(--surface-soft);
-            border: 1px solid var(--border-color);
-            padding: 9px 12px;
+            background: #0f172a;
+            padding: 10px 14px;
             border-radius: 12px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-        .streak-pill {
-            background: #fef3c7;
-            color: #92400e;
-            border: 1px solid #fde68a;
-            padding: 2px 8px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-        .score-pill { color: var(--primary); font-weight: 700; transition: transform 0.2s; }
-        .score-plus { color: var(--success) !important; transform: scale(1.12); }
-        .score-minus { color: var(--danger) !important; transform: scale(1.12); }
-        .timer-bar-bg {
-            width: 100%;
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 99px;
-            overflow: hidden;
             margin-bottom: 12px;
         }
-        .timer-bar-fill {
-            height: 100%;
-            width: 100%;
-            background: var(--primary);
-            transition: width 1s linear, background-color 0.3s;
-        }
-        .question-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-        .question-text {
-            font-size: 15px;
-            font-weight: 600;
-            line-height: 1.45;
-            min-height: 50px;
-            color: var(--text);
-            flex: 1;
-        }
-        .hint-btn {
-            background: #fffbeb;
-            color: #92400e;
-            border: 1px solid #fcd34d;
-            border-radius: 10px;
-            padding: 6px 10px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s;
-        }
-        .hint-btn:hover:not(:disabled) {
-            background: #fef3c7;
-        }
-        .hint-btn:disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-        }
-        .hint-box {
-            background: #fffbeb;
-            border: 1px solid #fde68a;
-            color: #78350f;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 8px 12px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            line-height: 1.35;
-        }
+        .score-pill { color: var(--accent); transition: transform 0.2s; }
+        .score-plus { color: var(--success) !important; transform: scale(1.15); }
+        .score-minus { color: var(--danger) !important; transform: scale(1.15); }
+        .timer-bar-bg { width: 100%; height: 8px; background: #334155; border-radius: 99px; overflow: hidden; margin-bottom: 14px; }
+        .timer-bar-fill { height: 100%; width: 100%; background: var(--accent); transition: width 1s linear, background-color 0.3s; }
+        .question-text { font-size: 15px; line-height: 1.4; margin-bottom: 14px; min-height: 58px; }
         .options-grid { display: grid; gap: 8px; }
         .btn {
-            background-color: var(--surface-soft);
-            color: var(--text);
-            border: 1px solid var(--border-color);
+            background-color: #334155;
+            color: #ffffff;
+            border: none;
             padding: 11px 14px;
             border-radius: 12px;
             font-size: 14px;
@@ -249,170 +90,129 @@
             text-align: left;
             transition: all 0.2s;
         }
-        .btn:hover:not(:disabled) {
-            background-color: var(--primary-soft);
-            border-color: var(--primary);
-        }
-        .btn.eliminated {
-            opacity: 0.42;
-            text-decoration: line-through;
-        }
-        .btn.correct {
-            background-color: #dcfce7 !important;
-            border-color: var(--success) !important;
-            color: #14532d;
-            opacity: 1 !important;
-            text-decoration: none !important;
-        }
-        .btn.incorrect {
-            background-color: #fee2e2 !important;
-            border-color: var(--danger) !important;
-            color: #7f1d1d;
-            opacity: 1 !important;
-        }
+        .btn:hover:not(:disabled) { background-color: #475569; }
+        .btn:disabled { opacity: 0.85; cursor: not-allowed; }
+        .btn.correct { background-color: var(--success) !important; color: #052e16; opacity: 1; }
+        .btn.incorrect { background-color: var(--danger) !important; color: #ffffff; opacity: 1; }
         .btn-primary {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            color: #ffffff;
+            background-color: var(--accent);
+            color: #0f172a;
             text-align: center;
             width: 100%;
             margin-top: 10px;
             font-size: 16px;
-            font-weight: 700;
         }
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-            border-color: var(--primary-hover);
-        }
-        .menu-secondary-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 8px;
-        }
+        .btn-primary:hover { background-color: #7dd3fc; }
         .btn-secondary {
             background-color: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
+            border: 1px solid #475569;
+            color: #cbd5e1;
             text-align: center;
             width: 100%;
-            padding: 9px 10px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
+            margin-top: 8px;
+            font-size: 14px;
         }
-        .btn-secondary:hover {
-            background-color: var(--surface-soft);
-            color: var(--text);
-            border-color: var(--primary);
+        .btn-secondary:hover { background-color: rgba(255, 255, 255, 0.05); }
+        .btn-export {
+            background-color: #0f766e;
+            color: #ffffff;
+            text-align: center;
+            width: 100%;
+            margin-top: 8px;
+            font-size: 14px;
         }
-        .btn-secondary.full-span {
-            grid-column: 1 / -1;
+        .btn-export:hover { background-color: #0d9488; }
+        .btn-danger-sm {
+            background-color: #991b1b;
+            color: #fecaca;
+            padding: 6px 10px;
+            font-size: 12px;
+            border-radius: 8px;
+        }
+        .btn-danger-sm:hover { background-color: #dc2626; color: #ffffff; }
+        .btn-sm {
+            padding: 6px 10px;
+            font-size: 12px;
+            border-radius: 8px;
         }
         .form-group {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             text-align: left;
         }
         .form-group label {
             display: block;
             font-size: 13px;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 3px;
+            color: #cbd5e1;
+            margin-bottom: 4px;
         }
         .form-control {
             width: 100%;
-            padding: 9px 12px;
-            background: var(--surface-soft);
-            border: 1px solid var(--border-color);
-            color: var(--text);
+            padding: 10px 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: white;
             border-radius: 10px;
             font-size: 14px;
         }
-        .form-control:focus {
-            outline: 2px solid rgba(15, 118, 110, 0.25);
-            border-color: var(--primary);
-        }
-        .form-control option { background-color: #ffffff; color: var(--text); }
-        .feedback-box {
-            margin-top: 10px;
-            font-size: 13px;
-            line-height: 1.4;
-            min-height: 36px;
-            font-weight: 600;
-        }
+        .feedback-box { margin-top: 10px; font-size: 13px; line-height: 1.35; min-height: 36px; font-weight: 500; }
         .credits-card {
-            background: var(--surface-soft);
+            background: #0f172a;
             padding: 14px;
             border-radius: 12px;
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 13px;
-            line-height: 1.55;
-            color: var(--text-muted);
+            line-height: 1.6;
+            color: #cbd5e1;
             text-align: left;
-            max-height: 220px;
+            max-height: 180px;
             overflow-y: auto;
-            border: 1px solid var(--border-color);
         }
-        .credits-card h3 { color: var(--primary); font-size: 13px; margin-bottom: 3px; margin-top: 7px; }
+        .credits-card h3 { color: var(--accent); font-size: 13px; margin-bottom: 2px; margin-top: 6px; }
         .credits-card h3:first-child { margin-top: 0; }
-        .credits-card ul { padding-left: 16px; margin-top: 2px; }
-        .credits-card li { margin-bottom: 3px; }
-        .teacher-record-item {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 8px;
-            margin-bottom: 6px;
-            font-size: 12px;
-            color: var(--text);
-        }
-        .teacher-actions {
+        .db-toolbar {
             display: flex;
-            gap: 6px;
-            margin-top: 8px;
             flex-wrap: wrap;
-        }
-        .mini-action-btn {
-            background: var(--primary);
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            padding: 6px 10px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .mini-action-btn.danger {
-            background: #dc2626;
-        }
-        .result-box {
-            background: var(--surface-soft);
-            padding: 16px;
-            border-radius: 14px;
-            margin: 10px 0;
-            border: 1px solid var(--border-color);
-        }
-        .review-list {
-            text-align: left;
-            max-height: 220px;
-            overflow-y: auto;
-            margin-top: 10px;
-            display: grid;
             gap: 8px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
-        .review-item {
-            background: var(--surface-soft);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 10px;
+        .db-list {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            max-height: 250px;
+            overflow-y: auto;
+            text-align: left;
+        }
+        .db-row {
+            padding: 10px 12px;
+            border-bottom: 1px solid #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+        }
+        .db-row:last-child { border-bottom: none; }
+        .db-detail {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 10px;
+            max-height: 190px;
+            overflow-y: auto;
+            text-align: left;
             font-size: 12px;
-            line-height: 1.4;
         }
-        .review-item.ok { border-left: 4px solid var(--success); }
-        .review-item.bad { border-left: 4px solid var(--danger); }
+        .detail-item {
+            padding: 7px 0;
+            border-bottom: 1px solid #1e293b;
+        }
+        .detail-item:last-child { border-bottom: none; }
+        .tag-ok { color: var(--success); font-weight: 700; }
+        .tag-bad { color: var(--danger); font-weight: 700; }
         .hidden { display: none !important; }
     </style>
 </head>
@@ -420,42 +220,25 @@
 
 <div class="app-container">
     <div class="header">
-        <div class="top-bar">
-            <span class="badge-app">EnferComp • 1 Min / Pregunta</span>
-            <button type="button" id="audio-toggle-btn" class="audio-btn" onclick="toggleSound()">🔊 Sonido ON</button>
-        </div>
+        <div class="badge-app">EnferComp • Sesión 45 Minutos</div>
         <h1>Redes Sociales e Impacto en la Salud</h1>
     </div>
 
-    <!-- FORMULARIO OCULTO PARA NETLIFY FORMS -->
+    <!-- FORMULARIO OCULTO PARA NETLIFY -->
     <form name="resultados-estudiantes" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="hidden">
         <input type="hidden" name="form-name" value="resultados-estudiantes">
-        <input type="text" name="bot-field" id="net-bot">
         <input type="text" name="nombre" id="net-nombre">
         <input type="text" name="apellidos" id="net-apellidos">
         <input type="text" name="sexo" id="net-sexo">
         <input type="text" name="carrera" id="net-carrera">
         <input type="text" name="sede" id="net-sede">
         <input type="text" name="puntaje" id="net-puntaje">
-        <input type="text" name="detalle" id="net-detalle">
     </form>
 
     <!-- PANTALLA DE REGISTRO -->
     <div id="register-screen">
-        <div class="logo-frame">
-            <img src="https://i.ibb.co/0p9W5FMx/logo-22-removebg-preview.png" alt="Logotipo Enfermería y Salud Digital">
-        </div>
-        <div class="register-title">Registro y Selección de Modalidad</div>
-
-        <div class="mode-selector">
-            <div id="mode-classic" class="mode-card active" onclick="selectMode('classic')">
-                <strong>📋 Evaluación Clásica</strong>
-                <span>14 preguntas • 3 opciones • 1 min</span>
-            </div>
-            <div id="mode-triage" class="mode-card" onclick="selectMode('triage')">
-                <strong>🩺 Triaje Clínico</strong>
-                <span>12 casos V/F • 1 min por caso</span>
-            </div>
+        <div class="image-frame">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><circle cx='200' cy='60' r='28' fill='%2338bdf8' opacity='0.2'/><path d='M188 44h24v10h10v12h-10v10h-24V66h-10V54h10z' fill='%2338bdf8'/><path d='M170 85h60v8h-60z' fill='%2322c55e'/><text x='200' y='125' fill='%23f8fafc' font-family='sans-serif' font-size='13' font-weight='bold' text-anchor='middle'>Registro - Enfermería y Salud</text></svg>" alt="Registro">
         </div>
 
         <div class="form-group">
@@ -491,44 +274,15 @@
             </select>
         </div>
 
-        <button type="button" class="btn btn-primary" onclick="validateAndStart()">Comenzar Evaluación</button>
+        <button class="btn btn-primary" onclick="validateAndStart()">Comenzar Evaluación</button>
+        <button class="btn btn-secondary" onclick="openDbScreen()">🗄️ Ver Encuestados y Exportar Todos (<span id="db-count">0</span>)</button>
+        <button class="btn btn-secondary" onclick="toggleCredits()">👥 Ver Equipo y Tutores</button>
 
-        <div class="menu-secondary-grid">
-            <button type="button" class="btn-secondary" onclick="toggleMenuPanel('counseling-panel')">💬 Consejería</button>
-            <button type="button" class="btn-secondary" onclick="toggleMenuPanel('causes-panel')">🔍 Otras Causales</button>
-            <button type="button" class="btn-secondary" onclick="toggleMenuPanel('credits-panel')">👥 Equipo y Tutor</button>
-           
-        </div>
-
-        <!-- PANEL DE CONSEJERÍA -->
-        <div id="counseling-panel" class="credits-card hidden">
-            <h3>Orientación y Consejería de Enfermería:</h3>
-            <ul>
-                <li><strong>Entrevista sin juicios:</strong> Escucha activa y empática para conocer cómo usa el tiempo libre y las redes sin generar culpa ni rechazo.</li>
-                <li><strong>Valoración clínica inicial:</strong> Ante ansiedad por desconexión (nomofobia), revisar signos vitales y síntomas físicos antes de emitir juicios.</li>
-                <li><strong>Higiene del sueño:</strong> Apagar pantallas al menos 1 hora antes de dormir para prevenir el <em>vamping</em> y proteger el descanso.</li>
-                <li><strong>Alternativas saludables:</strong> Promover deporte al aire libre, pausas activas y espacios de convivencia fuera de pantalla.</li>
-                <li><strong>Red familiar y derivación:</strong> Involucrar a la familia en el acompañamiento y referir a psicología o psiquiatría cuando hay trastornos severos o riesgo.</li>
-            </ul>
-        </div>
-
-        <!-- PANEL DE OTRAS CAUSALES -->
-        <div id="causes-panel" class="credits-card hidden">
-            <h3>Otras Causales Asociadas a Estos Trastornos:</h3>
-            <ul>
-                <li><strong>Factores emocionales y psicosociales:</strong> Estrés académico o laboral, duelo, baja autoestima, soledad o conflictos familiares y escolares.</li>
-                <li><strong>Acoso y presión social:</strong> Ciberacoso, necesidad de aprobación constante o comparación con estándares irreales en redes.</li>
-                <li><strong>Hábitos y estilo de vida:</strong> Sedentarismo prolongado, horarios irregulares de sueño y consumo excesivo de cafeína o bebidas energéticas.</li>
-                <li><strong>Condiciones clínicas previas:</strong> Trastornos de ansiedad o del ánimo preexistentes, insomnio previo o suspensión no supervisada de tratamiento médico.</li>
-            </ul>
-        </div>
-
-        <!-- PANEL DE EQUIPO Y TUTORES -->
         <div id="credits-panel" class="credits-card hidden">
             <h3>Docente Tutor:</h3>
             <p>Lic. Marvin Talavera</p>
             <h3>Estudiantes Autores:</h3>
-            <ul>
+            <ul style="padding-left: 16px;">
                 <li>SERRANO RIVERA MELBA JULISSA</li>
                 <li>TALAVERA CASTILLO MAYRA DE JESUS</li>
                 <li>TERCERO BELLORIN SAYDI MERCEDES</li>
@@ -536,25 +290,14 @@
                 <li>JOSSELING MARCELA CHAVARRIA IGLESIAS</li>
             </ul>
         </div>
-
-        <!-- PANEL PRIVADO SOLO PARA EL DOCENTE -->
-        <div id="teacher-panel" class="credits-card hidden">
-            <h3>Panel Privado Docente (Solo Tú):</h3>
-            <div id="teacher-records-list"></div>
-            <div class="teacher-actions">
-                <button type="button" class="mini-action-btn" onclick="downloadResultsCSV()">📥 Descargar CSV</button>
-                <button type="button" class="mini-action-btn danger" onclick="clearLocalRecords()">🗑 Limpiar Local</button>
-            </div>
-        </div>
     </div>
 
     <!-- PANTALLA DEL JUEGO -->
     <div id="quiz-screen" class="hidden">
         <div class="stats-bar">
-            <span id="q-counter">Pregunta 1/14</span>
-            <span id="timer-text">⏱️ 60s</span>
-            <span id="streak-badge" class="streak-pill hidden">🔥 Racha x0</span>
-            <span id="score-display" class="score-pill">Puntaje: 0/100</span>
+            <span id="q-counter">Pregunta 1/10</span>
+            <span id="timer-text">⏱️ 15s</span>
+            <span id="score-display" class="score-pill">Puntaje: 0</span>
         </div>
 
         <div class="timer-bar-bg">
@@ -562,479 +305,458 @@
         </div>
 
         <div class="image-frame" id="frame-container">
-            <img id="question-img" src="" alt="Imagen de la pregunta">
+            <img id="question-img" src="" alt="Imagen clínica">
         </div>
 
-        <div class="question-header-row">
-            <div id="question-text" class="question-text"></div>
-            <button type="button" id="hint-btn" class="hint-btn" onclick="useHint()">💡 Pista (-2)</button>
-        </div>
-        <div id="hint-box" class="hint-box hidden"></div>
-
+        <div id="question-text" class="question-text"></div>
         <div id="options-container" class="options-grid"></div>
         <div id="feedback-box" class="feedback-box"></div>
+        <button id="next-question-btn" class="btn btn-primary hidden" onclick="nextStep()">Siguiente Pregunta ➡️</button>
     </div>
 
-    <!-- PANTALLA FINAL (SOLO VISTA DEL ESTUDIANTE) -->
+    <!-- PANTALLA FINAL -->
     <div id="end-screen" class="hidden" style="text-align: center;">
         <h2 id="end-title" style="margin-bottom: 8px; font-size: 20px;"></h2>
-        <div class="result-box">
-            <p style="font-size: 13px; color: var(--text-muted);">Calificación Final</p>
-            <p id="final-score" style="font-size: 28px; font-weight: 800; color: var(--primary); margin: 4px 0;"></p>
-            <p id="final-details" style="font-size: 13px; color: var(--text); margin: 6px 0; font-weight: 600;"></p>
-            <p id="final-summary" style="font-size: 13px; color: var(--text-muted);"></p>
+        <div style="background: #0f172a; padding: 16px; border-radius: 14px; margin: 10px 0;">
+            <p style="font-size: 13px; color: #94a3b8;">Puntaje Total Obtenido</p>
+            <p id="final-score" style="font-size: 28px; font-weight: 800; color: var(--accent); margin: 4px 0;"></p>
+            <p id="final-summary" style="font-size: 13px; color: #cbd5e1;"></p>
+        </div>
+        <p id="db-save-status" style="font-size: 12px; color: #22c55e; margin-bottom: 8px;">✔ Guardando en base de datos local...</p>
+
+        <button class="btn btn-export" onclick="exportAllDbCSV()">📥 Exportar Todos los Registrados (.CSV)</button>
+        <button class="btn btn-secondary" onclick="openDbScreen()">🗄️ Ver Lista Completa de Encuestados (<span id="end-db-count">0</span>)</button>
+        <button class="btn btn-primary" onclick="location.reload()">🔄 Siguiente Encuestado / Reiniciar</button>
+    </div>
+
+    <!-- PANTALLA DE BASE DE DATOS LOCAL -->
+    <div id="db-screen" class="hidden">
+        <h2 style="font-size: 17px; margin-bottom: 4px;">🗄️ Encuestados Registrados</h2>
+        <p style="font-size: 12px; color: #94a3b8; margin-bottom: 12px;">Se exportan todos los registros acumulados en una sola descarga</p>
+
+        <div class="db-toolbar">
+            <select id="db-filter-sede" class="form-control" style="width: auto; padding: 6px 10px; font-size: 12px;" onchange="renderDbList()">
+                <option value="ALL">Todas las sedes</option>
+                <option value="Condega">Condega</option>
+                <option value="Estelí">Estelí</option>
+            </select>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button class="btn btn-export btn-sm" style="width: auto; margin-top: 0;" onclick="exportAllDbCSV()">📥 Exportar Todos (.CSV)</button>
+                <button class="btn btn-secondary btn-sm" style="width: auto; margin-top: 0;" onclick="exportAllDbJSON()">📄 Todos (.JSON)</button>
+                <button class="btn btn-danger-sm" onclick="clearAllDbRecords()">🗑️ Vaciar</button>
+            </div>
         </div>
 
-        <button type="button" class="btn-secondary full-span" style="margin-top: 6px;" onclick="toggleReview()">📖 Ver Mi Retroalimentación</button>
-        <div id="review-panel" class="review-list hidden"></div>
+        <div id="db-list" class="db-list"></div>
+        <div id="db-detail-box" class="db-detail hidden"></div>
 
-        <p id="save-status-text" style="font-size: 12px; color: var(--success); font-weight: 600; margin-top: 10px;">✔ Tu evaluación ha sido registrada para revisión docente.</p>
-        <button type="button" class="btn btn-primary" onclick="location.reload()">🔄 Reiniciar Evaluación</button>
+        <button class="btn btn-primary" onclick="backFromDb()">⬅️ Volver</button>
     </div>
 </div>
 
 <script>
-    const STORAGE_KEY = 'EnferComp_Historial_Resultados';
-    const TEACHER_PIN = 'docente2026';
+    const DB_NAME = 'EnferCompDB';
+    const STORE_NAME = 'registros_alumnos';
+    const BACKUP_KEY = 'enfercomp_db_backup';
 
-    const imgCorrectFeedback = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%23dcfce7'/><circle cx='200' cy='55' r='24' fill='%2316a34a'/><path d='M189 55l7 7 14-14' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linecap='round'/><text x='200' y='110' fill='%2314532d' font-family='sans-serif' font-size='14' font-weight='bold' text-anchor='middle'>¡RESPUESTA CORRECTA!</text></svg>";
+    // =========================================================================
+    // IMÁGENES DE RETROALIMENTACIÓN (CORRECTO E INCORRECTO)
+    // =========================================================================
+    const imgCorrectFeedback = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%23052e16'/><circle cx='200' cy='55' r='24' fill='%2322c55e'/><path d='M189 55l7 7 14-14' fill='none' stroke='%230f172a' stroke-width='4' stroke-linecap='round'/><text x='200' y='110' fill='%2322c55e' font-family='sans-serif' font-size='14' font-weight='bold' text-anchor='middle'>¡EXCELENTE! (+20 pts)</text></svg>";
 
-    const imgIncorrectFeedback = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%23fee2e2'/><circle cx='200' cy='55' r='24' fill='%23dc2626'/><path d='M189 44l22 22m0-22l-22 22' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linecap='round'/><text x='200' y='110' fill='%237f1d1d' font-family='sans-serif' font-size='14' font-weight='bold' text-anchor='middle'>¡REVISA EL PROTOCOLO! (0 pts)</text></svg>";
+    const imgIncorrectFeedback = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%23450a0a'/><circle cx='200' cy='55' r='24' fill='%23ef4444'/><path d='M189 44l22 22m0-22l-22 22' fill='none' stroke='%230f172a' stroke-width='4' stroke-linecap='round'/><text x='200' y='110' fill='%23ef4444' font-family='sans-serif' font-size='14' font-weight='bold' text-anchor='middle'>¡INCORRECTO! (-10 pts)</text></svg>";
 
-    const classicQuestions = [
+    // =========================================================================
+    // 10 PREGUNTAS CON ILUSTRACIONES DE ENFERMERÍA Y SALUD DIGITAL
+    // =========================================================================
+    const questions = [
         {
             question: "1. ¿Cuál es el primer paso recomendado en la entrevista de confianza para pacientes con aislamiento físico?",
-            image: "https://i.ibb.co/C5cmCY2P/ni-os-que-juegan-preguntas-de-contestaci-n-del-juego-de-concurso-82352922.webp",
+            image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><path d='M150 45a25 25 0 1 1 50 0c0 14-10 25-25 25s-25-11-25-25z' fill='%2338bdf8'/><path d='M120 110c0-18 15-30 30-30h40c15 0 30 12 30 30v10H120z' fill='%2338bdf8'/><text x='200' y='140' fill='%2394a3b8' font-family='sans-serif' font-size='12' text-anchor='middle'>Entrevista Clínica y Empatía</text></svg>",
             options: [
                 "Hablar sin juzgar sobre cómo utiliza su tiempo libre",
                 "Criticar fuertemente su uso de redes sociales",
                 "Aislarlo completamente de sus familiares"
             ],
             answer: 0,
-            hint: "La apertura y la empatía evitan que el paciente se cierre en consulta.",
-            explanation: "Escuchar sin juzgar fomenta la confianza en la consulta clínica."
+            explanation: "Correcto (+20 pts): Escuchar sin juzgar fomenta la confianza en la consulta clínica."
         },
         {
             question: "2. Ante un paciente con ansiedad severa por pérdida de conexión a internet (Nomofobia), ¿qué se valora primero?",
-            image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80",
+            image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><path d='M130 75h40l15-25 20 45 15-20 15 20h35' fill='none' stroke='%23ef4444' stroke-width='4'/><text x='200' y='130' fill='%2338bdf8' font-family='sans-serif' font-size='12' text-anchor='middle'>Evaluación de Signos Vitales y Ansiedad</text></svg>",
             options: [
                 "Comprar un teléfono inteligente nuevo",
                 "Valorar signos vitales e indagar síntomas exactos",
                 "Dar de alta médica de inmediato"
             ],
             answer: 1,
-            hint: "En una crisis ansiosa aguda, primero se evalúa el estado fisiológico.",
-            explanation: "Es indispensable revisar los signos vitales e indagar síntomas ante crisis de ansiedad."
+            explanation: "Correcto (+20 pts): Es indispensable revisar los signos vitales ante crisis de ansiedad."
         },
         {
             question: "3. ¿Cómo se le denomina al hábito nocturno de desvelarse usando dispositivos móviles afectando el descanso?",
-            image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+            image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><circle cx='240' cy='60' r='25' fill='%23f59e0b'/><rect x='150' y='50' width='40' height='70' rx='6' fill='%23334155' stroke='%2338bdf8' stroke-width='2'/><text x='200' y='135' fill='%23f8fafc' font-family='sans-serif' font-size='12' text-anchor='middle'>Vamping / Uso Nocturno de Pantallas</text></svg>",
             options: [
                 "Vamping (uso nocturno de pantallas)",
                 "Insomnio cronológico natural",
                 "Síndrome de fatiga diurna"
             ],
             answer: 0,
-            hint: "El término combina la idea de vigilia nocturna con pantallas.",
-            explanation: "El Vamping altera severamente el ciclo del sueño y la secreción de melatonina."
+            explanation: "Correcto (+20 pts): El Vamping altera severamente el ciclo del sueño y la melatonina."
         },
         {
             question: "4. En casos de trastornos mentales severos y del sueño, ¿qué rol cumple el entorno familiar?",
-            image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=600&q=80",
+            image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><circle cx='170' cy='50' r='16' fill='%2338bdf8'/><circle cx='230' cy='50' r='16' fill='%2338bdf8'/><path d='M150 95c0-12 10-20 20-20h20c10 0 20 8 20 20v15H150z' fill='%2338bdf8'/><text x='200' y='135' fill='%23f8fafc' font-family='sans-serif' font-size='12' text-anchor='middle'>Acompañamiento y Red de Apoyo Familiar</text></svg>",
             options: [
                 "Dejar que el paciente resuelva solo su problema",
                 "Realizar acompañamiento y vigilancia estrecha",
                 "Prohibir la comunicación médica"
             ],
             answer: 1,
-            hint: "El apoyo cercano en casa ayuda a sostener rutinas y detectar señales de alarma.",
-            explanation: "El acompañamiento familiar estrecho es clave en el seguimiento y recuperación."
+            explanation: "Correcto (+20 pts): El acompañamiento familiar estrecho es clave en el tratamiento."
         },
         {
             question: "5. ¿Qué actividad física se recomienda promover para contrarrestar el sedentarismo digital?",
-            image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80",
+            image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><circle cx='200' cy='45' r='15' fill='%2322c55e'/><path d='M190 75l10-15 10 15v25h-5v-15h-10v15h-5z' fill='%2322c55e'/><text x='200' y='130' fill='%23f8fafc' font-family='sans-serif' font-size='12' text-anchor='middle'>Promoción de Actividad Física y Deporte</text></svg>",
             options: [
                 "Competencias de videojuegos en línea",
                 "Cualquier deporte al aire libre o actividad física de agrado",
                 "Ninguna, el reposo total es mejor"
             ],
             answer: 1,
-            hint: "Busca movimiento corporal real y contacto con el entorno.",
-            explanation: "El deporte al aire libre o actividad física agradable fomenta la socialización y salud."
+            explanation: "Correcto (+20 pts): El deporte al aire libre fomenta la socialización y la salud física."
         },
         {
             question: "6. ¿Cuál es un signo físico común de la ansiedad generada por la desconexión digital?",
-            image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600&q=80",
+            image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><path d='M170 80c0-10 15-25 30-25s30 15 30 25c0 15-30 35-30 35s-30-20-30-35z' fill='%23ef4444'/><text x='200' y='130' fill='%23f8fafc' font-family='sans-serif' font-size='12' text-anchor='middle'>Síntomas de Taquicardia y Pánico</text></svg>",
             options: [
                 "Taquicardia, sudoración y desesperación",
                 "Aumento de la visión nocturna",
                 "Relajación muscular profunda"
             ],
             answer: 0,
-            hint: "Piensa en la respuesta autonómica del sistema nervioso simpático.",
-            explanation: "La abstinencia digital puede activar taquicardia, sudoración y malestar ansioso."
+            explanation: "Correcto (+20 pts): La abstinencia digital puede activar síntomas físicos de pánico y ansiedad."
         },
         {
             question: "7. ¿Qué aspecto ético y clínico debe mantener el personal de salud durante la intervención?",
-            image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80",
+            image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><rect x='175' y='45' width='50' height='40' rx='5' fill='%2338bdf8'/><path d='M190 45v-10h20v10' fill='none' stroke='%2338bdf8' stroke-width='4'/><path d='M195 60h10m-5-5v10' stroke='%230f172a' stroke-width='3'/><text x='200' y='125' fill='%23f8fafc' font-family='sans-serif' font-size='12' text-anchor='middle'>Ética, Respeto y Confidencialidad</text></svg>",
             options: [
                 "Confidencialidad, empatía y respeto al paciente",
                 "Publicar el caso en redes sociales del hospital",
                 "Juzgar al paciente por sus hábitos virtuales"
             ],
             answer: 0,
-            hint: "La privacidad de los datos del paciente es inviolable en salud.",
-            explanation: "La confidencialidad, empatía y respeto garantizan una atención humanizada."
+            explanation: "Correcto (+20 pts): La empatía y el respeto garantizan una atención en salud de calidad."
         },
         {
             question: "8. ¿Cuándo se debe realizar una referencia a psicología o psiquiatría en estos casos?",
-            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+            image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><path d='M160 90l20-40 20 20 20-30 20 50z' fill='none' stroke='%2338bdf8' stroke-width='4'/><text x='200' y='130' fill='%23f8fafc' font-family='sans-serif' font-size='12' text-anchor='middle'>Derivación y Salud Mental Especializada</text></svg>",
             options: [
                 "Cuando hay trastornos mentales severos o riesgo para el paciente",
                 "Nunca, enfermería puede tratar todo por sí sola",
                 "Solo si el paciente tiene un teléfono caro"
             ],
             answer: 0,
-            hint: "La atención interdisciplinaria es clave ante cuadros de gravedad o riesgo.",
-            explanation: "La derivación a especialistas es fundamental ante trastornos severos o riesgo."
+            explanation: "Correcto (+20 pts): La derivación a especialistas es fundamental ante cuadros severos."
         },
         {
             question: "9. ¿Qué medida preventiva se aconseja respecto al uso de pantallas antes de dormir?",
-            image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=600&q=80",
+            image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><path d='M170 50c15 0 25 10 25 25s-10 25-25 25c3 15 15 25 30 25 18 0 30-12 30-30 0-15-12-27-30-35z' fill='%23f59e0b'/><text x='200' y='130' fill='%23f8fafc' font-family='sans-serif' font-size='12' text-anchor='middle'>Higiene del Sueño y Descanso Nocturno</text></svg>",
             options: [
                 "Apagar dispositivos al menos una hora antes de acostarse",
                 "Dejar el brillo al máximo en la oscuridad",
                 "Leer notificaciones hasta quedarse dormido"
             ],
             answer: 0,
-            hint: "La higiene del sueño incluye un margen sin estímulos luminosos previos.",
-            explanation: "Evitar pantallas al menos una hora antes de dormir mejora el descanso."
+            explanation: "Correcto (+20 pts): Evitar pantallas antes de dormir mejora significativamente el descanso."
         },
         {
             question: "10. ¿Por qué es importante el cumplimiento riguroso del tratamiento farmacológico prescrito?",
-            image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=600&q=80",
+            image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><rect width='400' height='150' fill='%230f172a'/><rect x='165' y='55' width='70' height='30' rx='15' fill='%2322c55e'/><path d='M200 55v30M165 70h70' stroke='%230f172a' stroke-width='4'/><text x='200' y='125' fill='%23f8fafc' font-family='sans-serif' font-size='12' text-anchor='middle'>Adherencia al Tratamiento Farmacológico</text></svg>",
             options: [
                 "Para estabilizar los trastornos severos bajo supervisión psiquiátrica",
                 "Para acelerar la adicción a internet",
                 "Para reemplazar la comunicación familiar"
             ],
             answer: 0,
-            hint: "La adherencia terapéutica mantiene la estabilidad clínica indicada.",
-            explanation: "El apego al tratamiento prescrito estabiliza cuadros severos bajo control médico."
-        },
-        {
-            question: "11. En adolescentes con uso excesivo de redes, ¿qué impacto psicosocial suele vigilar enfermería?",
-            image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80",
-            options: [
-                "Comparación constante, baja autoestima y aislamiento social",
-                "Mejora automática del rendimiento escolar en todos los casos",
-                "Eliminación total de la necesidad de sueño"
-            ],
-            answer: 0,
-            hint: "Las comparaciones irreales en redes pueden afectar la autopercepción.",
-            explanation: "La exposición constante puede asociarse a comparación social, aislamiento y baja autoestima."
-        },
-        {
-            question: "12. ¿Qué estrategia educativa ayuda a construir hábitos digitales saludables en la comunidad?",
-            image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80",
-            options: [
-                "Establecer horarios libres de pantalla y pausas activas",
-                "Mantener notificaciones activas las 24 horas",
-                "Prohibir hablar del tema en las charlas de salud"
-            ],
-            answer: 0,
-            hint: "Los límites claros y progresivos son más sostenibles que las prohibiciones bruscas.",
-            explanation: "Fijar horarios sin pantallas y pausas activas favorece el autocontrol y bienestar."
-        },
-        {
-            question: "13. Si un paciente reporta cefalea tensional y fatiga visual tras horas frente a pantallas, ¿qué orientas?",
-            image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80",
-            options: [
-                "Descansar la vista periódicamente, ajustar iluminación y evaluar ergonomía",
-                "Aumentar el tiempo continuo frente al monitor",
-                "Automedicarse sin valoración previa"
-            ],
-            answer: 0,
-            hint: "La ergonomía y el descanso ocular reducen la fatiga visual.",
-            explanation: "El descanso visual periódico, buena iluminación y postura ergonómica alivian la fatiga."
-        },
-        {
-            question: "14. ¿Cuál es el objetivo central del cuidado de enfermería en salud digital?",
-            image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
-            options: [
-                "Promover el autocuidado integral, la salud mental y el vínculo familiar",
-                "Clasificar a los pacientes por cantidad de seguidores",
-                "Sustituir la valoración clínica por encuestas en línea"
-            ],
-            answer: 0,
-            hint: "El enfoque es integral: físico, emocional, familiar y comunitario.",
-            explanation: "El cuidado busca fortalecer el autocuidado, la salud mental y el apoyo familiar."
+            explanation: "Correcto (+20 pts): El apego al tratamiento médico estabiliza la salud mental del paciente."
         }
     ];
 
-    const triageQuestions = [
-        {
-            question: "Caso 1: Un adolescente presenta temblor y taquicardia al quedarse sin datos móviles. ¿Es correcto evaluar primero signos vitales?",
-            image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero (Prioridad clínica)", "Falso (No es relevante)"],
-            answer: 0,
-            hint: "Evaluar constantes vitales es básico ante síntomas físicos de ansiedad.",
-            explanation: "Descartar o cuantificar alteraciones fisiológicas por ansiedad es prioritario."
-        },
-        {
-            question: "Caso 2: Usar el celular en la oscuridad hasta tarde favorece la producción normal de melatonina.",
-            image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero", "Falso (Altera el ciclo del sueño)"],
-            answer: 1,
-            hint: "La exposición lumínica nocturna suele retrasar o alterar el descanso.",
-            explanation: "La luz de pantalla y el uso nocturno (vamping) interfieren con el descanso."
-        },
-        {
-            question: "Caso 3: En consulta comunitaria, regañar al paciente por su tiempo en redes mejora su adherencia al plan de cuidado.",
-            image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero", "Falso (Genera rechazo y barreras)"],
-            answer: 1,
-            hint: "El juicio o regaño suele cerrar la comunicación terapéutica.",
-            explanation: "La entrevista sin juicios fortalece la confianza y la alianza terapéutica."
-        },
-        {
-            question: "Caso 4: Promover actividades recreativas o deportivas fuera de pantalla ayuda a reducir el sedentarismo.",
-            image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero (Medida preventiva útil)", "Falso"],
-            answer: 0,
-            hint: "Moverse al aire libre contrarresta horas de inactividad.",
-            explanation: "La actividad física y el contacto social contrarrestan el sedentarismo."
-        },
-        {
-            question: "Caso 5: Si un paciente muestra ideas de desesperanza grave o insomnio severo, corresponde derivar a salud mental.",
-            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero (Derivar a especialista)", "Falso (No requiere referencia)"],
-            answer: 0,
-            hint: "Ante riesgo o gravedad emocional, la referencia oportuna es clave.",
-            explanation: "La referencia oportuna a psicología o psiquiatría protege al paciente."
-        },
-        {
-            question: "Caso 6: La red de apoyo familiar es irrelevante cuando el paciente tiene problemas de sueño por uso de pantallas.",
-            image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero", "Falso (La familia apoya el seguimiento)"],
-            answer: 1,
-            hint: "El entorno familiar ayuda a mantener rutinas saludables en el hogar.",
-            explanation: "Involucrar a la familia favorece rutinas saludables y vigilancia estrecha."
-        },
-        {
-            question: "Caso 7: Mantener la confidencialidad sobre los hábitos y síntomas del paciente es parte de la ética de enfermería.",
-            image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero (Principio ético esencial)", "Falso"],
-            answer: 0,
-            hint: "Proteger la intimidad del paciente es un deber ético fundamental.",
-            explanation: "La confidencialidad y el respeto son pilares de la atención en salud."
-        },
-        {
-            question: "Caso 8: Suspender por cuenta propia la medicación psiquiátrica al sentirse mejor es una práctica segura.",
-            image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero", "Falso (Requiere control médico)"],
-            answer: 1,
-            hint: "Interrumpir un tratamiento sin indicación puede provocar recaídas.",
-            explanation: "Cualquier ajuste terapéutico debe hacerse bajo supervisión médica."
-        },
-        {
-            question: "Caso 9: Tomar fotos o videos de pacientes en consulta para subirlos a redes es una falta ética grave.",
-            image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero (Vulneración de privacidad)", "Falso"],
-            answer: 0,
-            hint: "Difundir imágenes clínicas sin consentimiento ni anonimato viola la ética.",
-            explanation: "Exponer pacientes en redes vulnera su dignidad, privacidad y ética profesional."
-        },
-        {
-            question: "Caso 10: La nomofobia se relaciona con el miedo o angustia intensa al no tener acceso al teléfono o conexión.",
-            image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero (Definición clínica asociada)", "Falso"],
-            answer: 0,
-            hint: "Viene de 'no-mobile-phone phobia'.",
-            explanation: "La nomofobia describe la ansiedad o malestar ante la ausencia de celular o señal."
-        },
-        {
-            question: "Caso 11: Programar pausas de descanso visual frente a pantallas ayuda a prevenir molestias oculares.",
-            image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero (Prevención ergonómica)", "Falso"],
-            answer: 0,
-            hint: "Descansar la vista evita sobrecarga visual prolongada.",
-            explanation: "Las pausas visuales ayudan a disminuir la fatiga ocular y tensión."
-        },
-        {
-            question: "Caso 12: Acompañar con empatía y orientar sobre rutinas de sueño forma parte del rol preventivo de enfermería.",
-            image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
-            options: ["Verdadero (Rol preventivo y educativo)", "Falso"],
-            answer: 0,
-            hint: "La educación en salud y el acompañamiento son ejes de enfermería.",
-            explanation: "Orientar sobre higiene del sueño y autocuidado es parte esencial de enfermería."
-        }
-    ];
-
-    let soundEnabled = true;
-    let selectedMode = 'classic';
-    let activeQuestions = classicQuestions;
-    const RESPONSE_TIME_SECONDS = 60; // 1 minuto de tiempo de respuesta por pregunta/caso
-    let secondsPerQuestion = RESPONSE_TIME_SECONDS;
-
-    let userData = { nombre: '', apellidos: '', sexo: '', carrera: '', sede: '' };
+    let userData = { nombre: '', apellidos: '', sexo: '', carrera: '', sede: '', fechaHora: '' };
     let currentIdx = 0;
     let score = 0;
-    let streak = 0;
     let correctCount = 0;
-    let incorrectCount = 0;
-    let timeLeft = RESPONSE_TIME_SECONDS;
+    let studentResponses = [];
+    let timeLeft = 15;
     let timerInterval = null;
     let locked = false;
-    let hintUsedThisQuestion = false;
-    let reviewHistory = [];
-    let audioCtx = null;
+    let previousScreen = 'register-screen';
 
-    function getAudioCtxSync() {
-        if (!soundEnabled) return null;
-        try {
-            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-            if (!AudioContextClass) return null;
-            if (!audioCtx) {
-                audioCtx = new AudioContextClass();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            return audioCtx;
-        } catch (e) {
-            return null;
-        }
-    }
+    // =========================================================================
+    // BASE DE DATOS LOCAL (INDEXEDDB + RESPALDO LOCALSTORAGE)
+    // =========================================================================
+    let dbInstance = null;
 
-    document.addEventListener('pointerdown', () => {
-        if (soundEnabled) getAudioCtxSync();
-    }, { passive: true });
+    function openDatabase() {
+        return new Promise((resolve, reject) => {
+            if (dbInstance) return resolve(dbInstance);
+            if (!('indexedDB' in window)) return reject(new Error('IndexedDB no soportado'));
 
-    function selectMode(mode) {
-        selectedMode = mode;
-        document.getElementById('mode-classic').classList.toggle('active', mode === 'classic');
-        document.getElementById('mode-triage').classList.toggle('active', mode === 'triage');
-    }
-
-    function toggleSound() {
-        soundEnabled = !soundEnabled;
-        const btn = document.getElementById('audio-toggle-btn');
-        btn.textContent = soundEnabled ? '🔊 Sonido ON' : '🔇 Sonido OFF';
-        if (soundEnabled) {
-            getAudioCtxSync();
-            playTone([523.25, 659.25], [0.14, 0.16], 'sine', 0.25);
-        }
-    }
-
-    function playTone(freqs, durations, type = 'sine', volume = 0.25) {
-        if (!soundEnabled) return;
-        const ctx = getAudioCtxSync();
-        if (!ctx) return;
-
-        const runNotes = () => {
-            let startTime = ctx.currentTime + 0.01;
-            freqs.forEach((f, i) => {
-                const dur = durations[i] || 0.16;
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = type;
-                osc.frequency.setValueAtTime(f, startTime);
-
-                gain.gain.setValueAtTime(0.001, startTime);
-                gain.gain.linearRampToValueAtTime(volume, startTime + 0.015);
-                gain.gain.exponentialRampToValueAtTime(0.001, startTime + dur);
-
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-
-                osc.start(startTime);
-                osc.stop(startTime + dur + 0.02);
-                startTime += dur * 0.92;
-            });
-        };
-
-        if (ctx.state === 'suspended') {
-            ctx.resume().then(runNotes).catch(() => {});
-        } else {
-            runNotes();
-        }
-    }
-
-    // Sonido del tiempo de respuesta (1 minuto / 60s por pregunta)
-    function soundResponseTimerTick(remaining) {
-        if (!soundEnabled || locked || remaining <= 0) return;
-        if (remaining <= 5) {
-            playTone([1046.5, 880], [0.07, 0.07], 'square', 0.2);
-        } else if (remaining <= 10) {
-            playTone([920], [0.08], 'triangle', 0.18);
-        } else {
-            playTone([680], [0.07], 'sine', 0.13);
-        }
-    }
-
-    function soundCorrect() { playTone([523.25, 659.25, 783.99], [0.16, 0.16, 0.28], 'triangle', 0.32); }
-    function soundWrong() { playTone([260, 185], [0.22, 0.34], 'sawtooth', 0.26); }
-    function soundTimeout() { playTone([392.0, 349.23, 261.63], [0.16, 0.16, 0.32], 'square', 0.22); }
-    function soundHint() { playTone([587.33, 880], [0.14, 0.2], 'sine', 0.25); }
-    function soundWinner() { playTone([523.25, 659.25, 783.99, 1046.5], [0.16, 0.16, 0.16, 0.45], 'triangle', 0.32); }
-    function soundLoser() { playTone([330, 293.66, 261.63, 196], [0.22, 0.22, 0.22, 0.48], 'sawtooth', 0.25); }
-
-    function toggleMenuPanel(panelId) {
-        const panels = ['counseling-panel', 'causes-panel', 'credits-panel', 'teacher-panel'];
-        panels.forEach((id) => {
-            const el = document.getElementById(id);
-            if (id === panelId) {
-                el.classList.toggle('hidden');
-            } else {
-                el.classList.add('hidden');
-            }
+            const request = indexedDB.open(DB_NAME, 1);
+            request.onupgradeneeded = function(e) {
+                const db = e.target.result;
+                if (!db.objectStoreNames.contains(STORE_NAME)) {
+                    const store = db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+                    store.createIndex('sede', 'sede', { unique: false });
+                    store.createIndex('fechaHora', 'fechaHora', { unique: false });
+                }
+            };
+            request.onsuccess = function(e) {
+                dbInstance = e.target.result;
+                resolve(dbInstance);
+            };
+            request.onerror = function(e) {
+                reject(e.target.error);
+            };
         });
     }
 
-    function openTeacherRecords() {
-        const panel = document.getElementById('teacher-panel');
-        if (!panel.classList.contains('hidden')) {
-            panel.classList.add('hidden');
-            return;
+    async function dbSaveRecord(record) {
+        try {
+            const db = await openDatabase();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_NAME, 'readwrite');
+                const store = tx.objectStore(STORE_NAME);
+                const req = store.add(record);
+                req.onsuccess = () => {
+                    record.id = req.result;
+                    refreshDbCounter();
+                    resolve(record);
+                };
+                req.onerror = () => reject(req.error);
+            });
+        } catch (err) {
+            const backup = JSON.parse(localStorage.getItem(BACKUP_KEY) || '[]');
+            record.id = Date.now();
+            backup.push(record);
+            localStorage.setItem(BACKUP_KEY, JSON.stringify(backup));
+            refreshDbCounter();
+            return record;
         }
-        const pin = prompt('Ingresa la clave docente:');
-        if (pin !== TEACHER_PIN) {
-            if (pin !== null) alert('Clave incorrecta.');
-            return;
-        }
-        renderTeacherRecords();
-        toggleMenuPanel('teacher-panel');
     }
 
-    function renderTeacherRecords() {
-        const listEl = document.getElementById('teacher-records-list');
+    async function dbGetAllRecords() {
         try {
-            const records = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-            if (!records.length) {
-                listEl.innerHTML = '<p>No hay registros locales guardados todavía.</p>';
+            const db = await openDatabase();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_NAME, 'readonly');
+                const store = tx.objectStore(STORE_NAME);
+                const req = store.getAll();
+                req.onsuccess = () => resolve(req.result || []);
+                req.onerror = () => reject(req.error);
+            });
+        } catch (err) {
+            return JSON.parse(localStorage.getItem(BACKUP_KEY) || '[]');
+        }
+    }
+
+    async function dbClearRecords() {
+        try {
+            const db = await openDatabase();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_NAME, 'readwrite');
+                const store = tx.objectStore(STORE_NAME);
+                const req = store.clear();
+                req.onsuccess = () => {
+                    localStorage.removeItem(BACKUP_KEY);
+                    refreshDbCounter();
+                    resolve();
+                };
+                req.onerror = () => reject(req.error);
+            });
+        } catch (err) {
+            localStorage.removeItem(BACKUP_KEY);
+            refreshDbCounter();
+        }
+    }
+
+    async function refreshDbCounter() {
+        const all = await dbGetAllRecords();
+        const el = document.getElementById('db-count');
+        const endEl = document.getElementById('end-db-count');
+        if (el) el.textContent = all.length;
+        if (endEl) endEl.textContent = all.length;
+    }
+
+    // =========================================================================
+    // EXPORTACIÓN GRUPAL DE TODOS LOS REGISTRADOS (.CSV Y .JSON)
+    // =========================================================================
+    function triggerDownload(rows, filename, mimeType, withBom = false) {
+        const content = rows.map(r => r.map(cell => `"${String(cell ?? '').replace(/"/g, '""')}"`).join(',')).join('\n');
+        const blob = new Blob([(withBom ? '\uFEFF' : '') + content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    async function exportAllDbCSV() {
+        const records = await dbGetAllRecords();
+        if (!records.length) return alert('Aún no hay encuestados registrados para exportar.');
+        const rows = [
+            ['ID Registro', 'Alumno', 'Sexo', 'Carrera', 'Sede', 'Fecha', 'Puntaje Final', 'Aciertos', 'N° Pregunta', 'Pregunta', 'Respuesta del Alumno', 'Respuesta Correcta', 'Estado', 'Puntos']
+        ];
+        records.forEach(rec => {
+            (rec.respuestas || []).forEach(item => {
+                rows.push([
+                    rec.id || '',
+                    `${rec.nombre} ${rec.apellidos}`,
+                    rec.sexo,
+                    rec.carrera,
+                    rec.sede,
+                    rec.fechaHora,
+                    `${rec.puntajeFinal} pts`,
+                    `${rec.aciertos} / ${rec.totalPreguntas}`,
+                    item.numero,
+                    item.pregunta,
+                    item.respuestaAlumno,
+                    item.respuestaCorrecta,
+                    item.estado,
+                    item.puntos
+                ]);
+            });
+        });
+        triggerDownload(rows, 'todos_los_encuestados_enfercomp.csv', 'text/csv;charset=utf-8;', true);
+    }
+
+    async function exportAllDbJSON() {
+        const records = await dbGetAllRecords();
+        if (!records.length) return alert('Aún no hay encuestados registrados para exportar.');
+        const blob = new Blob([JSON.stringify(records, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'todos_los_encuestados_enfercomp.json';
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    // =========================================================================
+    // PANTALLA DE BASE DE DATOS
+    // =========================================================================
+    async function openDbScreen() {
+        if (!document.getElementById('quiz-screen').classList.contains('hidden')) {
+            if (!locked) {
+                alert('Debes contestar la pregunta actual antes de salir.');
                 return;
             }
-            listEl.innerHTML = records.slice().reverse().map((r) => `
-                <div class="teacher-record-item">
-                    <strong>${r.nombre} ${r.apellidos}</strong> (${r.carrera} - ${r.sede})<br>
-                    <span>${r.modalidad}: <strong>${r.puntaje}</strong> (${r.buenas}B / ${r.malas}M)</span><br>
-                    <span style="color: var(--text-muted);">${r.fecha}</span>
+            previousScreen = 'quiz-screen';
+            clearInterval(timerInterval);
+        } else if (!document.getElementById('end-screen').classList.contains('hidden')) {
+            previousScreen = 'end-screen';
+        } else {
+            previousScreen = 'register-screen';
+        }
+
+        ['register-screen', 'quiz-screen', 'end-screen', 'db-screen'].forEach(id => {
+            document.getElementById(id).classList.toggle('hidden', id !== 'db-screen');
+        });
+        document.getElementById('db-detail-box').classList.add('hidden');
+        await renderDbList();
+    }
+
+    function backFromDb() {
+        document.getElementById('db-screen').classList.add('hidden');
+        document.getElementById(previousScreen).classList.remove('hidden');
+        refreshDbCounter();
+    }
+
+    async function renderDbList() {
+        const filterSede = document.getElementById('db-filter-sede').value;
+        let records = await dbGetAllRecords();
+        if (filterSede !== 'ALL') {
+            records = records.filter(r => r.sede === filterSede);
+        }
+
+        const listEl = document.getElementById('db-list');
+        if (!records.length) {
+            listEl.innerHTML = `<div style="padding:16px; text-align:center; color:#94a3b8;">No hay encuestados guardados para este filtro.</div>`;
+            return;
+        }
+
+        listEl.innerHTML = records.slice().reverse().map(rec => `
+            <div class="db-row">
+                <div>
+                    <div><strong>${rec.nombre} ${rec.apellidos}</strong> • <span style="color:var(--accent);">${rec.sede}</span> (${rec.carrera})</div>
+                    <div style="color:#94a3b8; font-size:11px; margin-top:2px;">${rec.fechaHora} — Aciertos: ${rec.aciertos}/${rec.totalPreguntas}</div>
                 </div>
-            `).join('');
-        } catch (err) {
-            listEl.innerHTML = '<p>No se pudo leer el historial local.</p>';
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <strong style="color:var(--accent);">${rec.puntajeFinal} pts</strong>
+                    <button class="btn btn-secondary btn-sm" style="width:auto; margin-top:0;" onclick="inspectDbRecord(${rec.id})">Ver</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    window.inspectDbRecord = async function(id) {
+        const records = await dbGetAllRecords();
+        const rec = records.find(r => r.id === id);
+        const detailEl = document.getElementById('db-detail-box');
+        if (!rec) return;
+
+        detailEl.classList.remove('hidden');
+        detailEl.innerHTML = `
+            <div style="padding-bottom:6px; margin-bottom:6px; border-bottom:1px solid #334155;">
+                <strong>${rec.nombre} ${rec.apellidos}</strong> (${rec.sede} - ${rec.carrera}) — <strong>${rec.puntajeFinal} pts</strong>
+            </div>
+            ${(rec.respuestas || []).map(item => `
+                <div class="detail-item">
+                    <div><strong>${item.pregunta}</strong></div>
+                    <div>Respuesta: ${item.respuestaAlumno} — <span class="${item.estado === 'Correcta' ? 'tag-ok' : 'tag-bad'}">${item.estado} (${item.puntos} pts)</span></div>
+                </div>
+            `).join('')}
+        `;
+    };
+
+    async function clearAllDbRecords() {
+        if (confirm('¿Desea eliminar todos los registros guardados en la base de datos local?')) {
+            await dbClearRecords();
+            document.getElementById('db-detail-box').classList.add('hidden');
+            renderDbList();
         }
     }
 
-    function clearLocalRecords() {
-        if (!confirm('¿Seguro que deseas borrar el historial local de este navegador?')) return;
-        localStorage.removeItem(STORAGE_KEY);
-        renderTeacherRecords();
+    // =========================================================================
+    // AUDIO Y DINÁMICA DEL JUEGO (CONTRASTE OBLIGATORIO POR PREGUNTA)
+    // =========================================================================
+    function playTone(freqs, durations, type = 'sine') {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        let startTime = audioCtx.currentTime;
+        freqs.forEach((f, i) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(f, startTime);
+            gain.gain.setValueAtTime(0.18, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, startTime + durations[i]);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(startTime);
+            osc.stop(startTime + durations[i]);
+            startTime += durations[i] * 0.85;
+        });
     }
 
-    function toggleReview() {
-        document.getElementById('review-panel').classList.toggle('hidden');
+    function soundCorrect() { playTone([523.25, 659.25], [0.12, 0.22], 'triangle'); }
+    function soundWrong() { playTone([220, 165], [0.18, 0.3], 'sawtooth'); }
+    function soundWinner() { playTone([523.25, 659.25, 783.99, 1046.5], [0.12, 0.12, 0.12, 0.4], 'triangle'); }
+    function soundLoser() { playTone([330, 293.66, 261.63, 196], [0.2, 0.2, 0.2, 0.45], 'sawtooth'); }
+
+    function toggleCredits() {
+        document.getElementById('credits-panel').classList.toggle('hidden');
     }
 
     function validateAndStart() {
@@ -1046,56 +768,32 @@
             return;
         }
 
-        getAudioCtxSync();
-
-        userData.nombre = nom;
-        userData.apellidos = ape;
-        userData.sexo = document.getElementById('input-sexo').value;
-        userData.carrera = document.getElementById('input-carrera').value;
-        userData.sede = document.getElementById('input-sede').value;
-
-        activeQuestions = selectedMode === 'triage' ? triageQuestions : classicQuestions;
-        secondsPerQuestion = RESPONSE_TIME_SECONDS;
+        userData = {
+            nombre: nom,
+            apellidos: ape,
+            sexo: document.getElementById('input-sexo').value,
+            carrera: document.getElementById('input-carrera').value,
+            sede: document.getElementById('input-sede').value,
+            fechaHora: new Date().toLocaleString('es-NI')
+        };
 
         document.getElementById('register-screen').classList.add('hidden');
         document.getElementById('quiz-screen').classList.remove('hidden');
         startGame();
     }
 
-    function getMaxBasePoints() {
-        return 100 / activeQuestions.length;
-    }
-
-    function formatScore(val) {
-        const rounded = Math.round(val * 10) / 10;
-        return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1).replace('.', ',');
-    }
-
     function startGame() {
         currentIdx = 0;
         score = 0;
-        streak = 0;
         correctCount = 0;
-        incorrectCount = 0;
-        reviewHistory = [];
-        updateStreakUI();
+        studentResponses = [];
         updateScoreUI(0);
         loadQuestion();
     }
 
-    function updateStreakUI() {
-        const badge = document.getElementById('streak-badge');
-        if (streak >= 2) {
-            badge.classList.remove('hidden');
-            badge.textContent = `🔥 Racha x${streak}`;
-        } else {
-            badge.classList.add('hidden');
-        }
-    }
-
     function updateScoreUI(delta) {
         const el = document.getElementById('score-display');
-        el.textContent = `Puntaje: ${formatScore(score)}/100`;
+        el.textContent = `Puntaje: ${score}`;
         el.classList.remove('score-plus', 'score-minus');
         if (delta > 0) el.classList.add('score-plus');
         if (delta < 0) el.classList.add('score-minus');
@@ -1104,28 +802,21 @@
 
     function loadQuestion() {
         locked = false;
-        hintUsedThisQuestion = false;
         clearInterval(timerInterval);
-        timeLeft = secondsPerQuestion;
+        timeLeft = 15;
 
-        const q = activeQuestions[currentIdx];
-        const prefix = selectedMode === 'triage' ? 'Caso' : 'Pregunta';
-        document.getElementById('q-counter').textContent = `${prefix} ${currentIdx + 1}/${activeQuestions.length}`;
+        const q = questions[currentIdx];
+        document.getElementById('q-counter').textContent = `Pregunta ${currentIdx + 1}/${questions.length}`;
         document.getElementById('question-img').src = q.image;
         document.getElementById('question-text').textContent = q.question;
-        document.getElementById('feedback-box').textContent = "";
-
-        const hintBtn = document.getElementById('hint-btn');
-        const hintBox = document.getElementById('hint-box');
-        hintBtn.disabled = false;
-        hintBox.classList.add('hidden');
-        hintBox.textContent = "";
+        document.getElementById('feedback-box').textContent = "Selecciona una opción para habilitar el avance.";
+        document.getElementById('feedback-box').style.color = "#94a3b8";
+        document.getElementById('next-question-btn').classList.add('hidden');
 
         const optionsDiv = document.getElementById('options-container');
         optionsDiv.innerHTML = "";
         q.options.forEach((opt, index) => {
             const btn = document.createElement('button');
-            btn.type = 'button';
             btn.className = 'btn';
             btn.textContent = opt;
             btn.onclick = () => handleAnswer(index, btn);
@@ -1135,90 +826,43 @@
         startTimer();
     }
 
-    function useHint() {
-        if (locked || hintUsedThisQuestion) return;
-        hintUsedThisQuestion = true;
-        soundHint();
-
-        const q = activeQuestions[currentIdx];
-        const hintBtn = document.getElementById('hint-btn');
-        const hintBox = document.getElementById('hint-box');
-        hintBtn.disabled = true;
-        hintBox.classList.remove('hidden');
-        hintBox.textContent = `💡 Pista: ${q.hint}`;
-
-        if (q.options.length === 3) {
-            const buttons = document.getElementById('options-container').querySelectorAll('.btn');
-            const wrongIndices = [0, 1, 2].filter(i => i !== q.answer);
-            const toEliminate = wrongIndices[Math.floor(Math.random() * wrongIndices.length)];
-            buttons[toEliminate].classList.add('eliminated');
-            buttons[toEliminate].disabled = true;
-        }
-    }
-
     function startTimer() {
         const timerText = document.getElementById('timer-text');
         const timerBar = document.getElementById('timer-bar');
         timerText.textContent = `⏱️ ${timeLeft}s`;
         timerBar.style.width = '100%';
-        timerBar.style.backgroundColor = '#0f766e';
+        timerBar.style.backgroundColor = 'var(--accent)';
 
         timerInterval = setInterval(() => {
             if (locked) {
                 clearInterval(timerInterval);
                 return;
             }
-            timeLeft--;
-            timerText.textContent = `⏱️ ${timeLeft}s`;
-            timerBar.style.width = `${(timeLeft / secondsPerQuestion) * 100}%`;
-
-            if (timeLeft <= 10) {
-                timerBar.style.backgroundColor = 'var(--danger)';
-            } else if (timeLeft <= 30) {
-                timerBar.style.backgroundColor = 'var(--warning)';
-            }
-
             if (timeLeft > 0) {
-                soundResponseTimerTick(timeLeft);
-            }
+                timeLeft--;
+                timerText.textContent = `⏱️ ${timeLeft}s`;
+                timerBar.style.width = `${(timeLeft / 15) * 100}%`;
 
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                handleTimeout();
+                if (timeLeft <= 5) timerBar.style.backgroundColor = 'var(--danger)';
+                else if (timeLeft <= 9) timerBar.style.backgroundColor = 'var(--warning)';
+            } else {
+                timerText.textContent = `⏱️ 0s — ¡Contesta para avanzar!`;
+                timerBar.style.width = '0%';
+                timerBar.style.backgroundColor = 'var(--danger)';
             }
         }, 1000);
     }
 
-    function handleTimeout() {
-        if (locked) return;
-        locked = true;
-        clearInterval(timerInterval);
-        soundTimeout();
-        streak = 0;
-        incorrectCount++;
-        updateStreakUI();
-        updateScoreUI(0);
-
-        document.getElementById('question-img').src = imgIncorrectFeedback;
-
-        const q = activeQuestions[currentIdx];
-        const buttons = document.getElementById('options-container').querySelectorAll('.btn');
-        buttons.forEach(b => b.disabled = true);
-        buttons[q.answer].classList.add('correct');
-
-        const fb = document.getElementById('feedback-box');
-        fb.style.color = '#b91c1c';
-        fb.textContent = `⏰ ¡Tiempo agotado (1 min / 60s)! (0 pts). ${q.explanation}`;
-
-        reviewHistory.push({
-            question: q.question,
-            chosenText: "Sin respuesta (tiempo agotado)",
-            correctText: q.options[q.answer],
-            explanation: q.explanation,
-            isCorrect: false
+    function registerStepAnswer(q, selectedIndex, isCorrect, estado, pts) {
+        studentResponses.push({
+            numero: currentIdx + 1,
+            pregunta: q.question,
+            respuestaAlumno: q.options[selectedIndex],
+            respuestaCorrecta: q.options[q.answer],
+            estado: estado,
+            puntos: pts
         });
-
-        setTimeout(nextStep, 2700);
+        if (isCorrect) correctCount++;
     }
 
     function handleAnswer(selectedIndex, btnClicked) {
@@ -1226,209 +870,117 @@
         locked = true;
         clearInterval(timerInterval);
 
-        const q = activeQuestions[currentIdx];
+        const q = questions[currentIdx];
         const buttons = document.getElementById('options-container').querySelectorAll('.btn');
         buttons.forEach(b => b.disabled = true);
+
         const fb = document.getElementById('feedback-box');
 
         if (selectedIndex === q.answer) {
             btnClicked.classList.add('correct');
             soundCorrect();
-            streak++;
-            updateStreakUI();
-
-            let earned = getMaxBasePoints();
-            if (hintUsedThisQuestion) earned = Math.max(1, earned - 2);
-            if (currentIdx === activeQuestions.length - 1 && incorrectCount === 0 && !hintUsedThisQuestion) {
-                score = 100;
-            } else {
-                score = Math.min(100, score + earned);
-            }
-            correctCount++;
-            updateScoreUI(earned);
+            score += 20;
+            updateScoreUI(20);
+            registerStepAnswer(q, selectedIndex, true, 'Correcta', 20);
 
             document.getElementById('question-img').src = imgCorrectFeedback;
 
-            fb.style.color = '#15803d';
-            fb.textContent = `¡Correcto! (+${formatScore(earned)} pts): ${q.explanation}`;
-
-            reviewHistory.push({
-                question: q.question,
-                chosenText: q.options[selectedIndex],
-                correctText: q.options[q.answer],
-                explanation: q.explanation,
-                isCorrect: true
-            });
+            fb.style.color = 'var(--success)';
+            fb.textContent = q.explanation;
         } else {
             btnClicked.classList.add('incorrect');
             buttons[q.answer].classList.add('correct');
             soundWrong();
-            streak = 0;
-            incorrectCount++;
-            updateStreakUI();
-            updateScoreUI(0);
+            score -= 10;
+            updateScoreUI(-10);
+            registerStepAnswer(q, selectedIndex, false, 'Incorrecta', -10);
 
             document.getElementById('question-img').src = imgIncorrectFeedback;
 
-            fb.style.color = '#b91c1c';
-            fb.textContent = `Incorrecto (0 pts). ${q.explanation}`;
-
-            reviewHistory.push({
-                question: q.question,
-                chosenText: q.options[selectedIndex],
-                correctText: q.options[q.answer],
-                explanation: q.explanation,
-                isCorrect: false
-            });
+            fb.style.color = 'var(--danger)';
+            fb.textContent = `Incorrecto (-10 pts). La respuesta correcta estaba marcada en verde.`;
         }
 
-        setTimeout(nextStep, 2700);
+        const nextBtn = document.getElementById('next-question-btn');
+        nextBtn.textContent = (currentIdx === questions.length - 1) ? '🏆 Finalizar y Guardar' : 'Siguiente Pregunta ➡️';
+        nextBtn.classList.remove('hidden');
     }
 
     function nextStep() {
+        if (!locked) {
+            alert('Debes contestar esta pregunta antes de continuar.');
+            return;
+        }
         currentIdx++;
-        if (currentIdx < activeQuestions.length) {
+        if (currentIdx < questions.length) {
             loadQuestion();
         } else {
-            saveResultsSafely();
+            sendDataToNetlify();
             showResults();
         }
     }
 
-    function saveLocalBackup(record) {
-        try {
-            const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-            existing.push(record);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
-            return true;
-        } catch (err) {
-            console.log("Respaldo local no disponible:", err);
-            return false;
-        }
-    }
-
-    function downloadResultsCSV() {
-        try {
-            const records = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-            if (!records.length) {
-                alert('No hay registros guardados aún en este navegador.');
-                return;
-            }
-            const headers = ['Fecha', 'Nombre', 'Apellidos', 'Sexo', 'Carrera', 'Sede', 'Modalidad', 'Puntaje', 'Buenas', 'Malas'];
-            const esc = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
-            const rows = records.map(r => [
-                r.fecha, r.nombre, r.apellidos, r.sexo, r.carrera, r.sede, r.modalidad, r.puntaje, r.buenas, r.malas
-            ].map(esc).join(','));
-
-            const csvContent = '\uFEFF' + [headers.map(esc).join(','), ...rows].join('\n');
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'resultados_enfercomp.csv';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        } catch (err) {
-            alert('No se pudo generar el archivo CSV.');
-        }
-    }
-
-    function saveResultsSafely() {
-        const modeLabel = selectedMode === 'triage' ? 'Triaje Clínico' : 'Evaluación Clásica';
-        const puntajeStr = `${formatScore(score)} / 100 pts`;
-        const detalleStr = `[${modeLabel}] ${correctCount} buenas, ${incorrectCount} malas`;
-
-        saveLocalBackup({
-            fecha: new Date().toLocaleString('es-NI'),
-            nombre: userData.nombre,
-            apellidos: userData.apellidos,
-            sexo: userData.sexo,
-            carrera: userData.carrera,
-            sede: userData.sede,
-            modalidad: modeLabel,
-            puntaje: puntajeStr,
-            buenas: correctCount,
-            malas: incorrectCount
-        });
-
+    function sendDataToNetlify() {
         document.getElementById('net-nombre').value = userData.nombre;
         document.getElementById('net-apellidos').value = userData.apellidos;
         document.getElementById('net-sexo').value = userData.sexo;
         document.getElementById('net-carrera').value = userData.carrera;
         document.getElementById('net-sede').value = userData.sede;
-        document.getElementById('net-puntaje').value = puntajeStr;
-        document.getElementById('net-detalle').value = detalleStr;
+        document.getElementById('net-puntaje').value = score + " pts";
 
-        const payload = new URLSearchParams({
-            'form-name': 'resultados-estudiantes',
-            'bot-field': '',
-            'nombre': userData.nombre,
-            'apellidos': userData.apellidos,
-            'sexo': userData.sexo,
-            'carrera': userData.carrera,
-            'sede': userData.sede,
-            'puntaje': puntajeStr,
-            'detalle': detalleStr
-        }).toString();
-
-        const statusEl = document.getElementById('save-status-text');
+        const formElement = document.querySelector('form[name="resultados-estudiantes"]');
+        const formData = new FormData(formElement);
 
         fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: payload
-        })
-        .then((res) => {
-            statusEl.textContent = res.ok
-                ? "✔ Tu resultado ha sido enviado y registrado correctamente."
-                : "✔ Tu resultado ha sido guardado en el registro docente.";
-        })
-        .catch(() => {
-            statusEl.textContent = "✔ Tu resultado ha sido guardado en el registro docente.";
-        });
+            body: new URLSearchParams(formData).toString()
+        }).catch((error) => console.log("Error al enviar a Netlify:", error));
     }
 
-    function renderReviewPanel() {
-        const panel = document.getElementById('review-panel');
-        panel.innerHTML = reviewHistory.map((item, idx) => `
-            <div class="review-item ${item.isCorrect ? 'ok' : 'bad'}">
-                <strong>${idx + 1}. ${item.question}</strong><br>
-                <span>Tu elección: ${item.chosenText}</span><br>
-                <span>Correcta: <strong>${item.correctText}</strong></span><br>
-                <span style="color: var(--text-muted);">${item.explanation}</span>
-            </div>
-        `).join('');
-    }
-
-    function showResults() {
+    async function showResults() {
         document.getElementById('quiz-screen').classList.add('hidden');
         document.getElementById('end-screen').classList.remove('hidden');
 
         const titleEl = document.getElementById('end-title');
         const scoreEl = document.getElementById('final-score');
-        const detailsEl = document.getElementById('final-details');
         const summaryEl = document.getElementById('final-summary');
+        const statusEl = document.getElementById('db-save-status');
 
-        const finalNum = Math.round(score * 10) / 10;
-        scoreEl.textContent = `${formatScore(finalNum)} / 100 Pts`;
-        detailsEl.textContent = `✅ Correctas: ${correctCount} | ❌ Incorrectas: ${incorrectCount}`;
+        scoreEl.textContent = `${score} pts`;
 
-        renderReviewPanel();
-
-        if (finalNum >= 70) {
+        if (score >= 120) {
             soundWinner();
             titleEl.textContent = `🏆 ¡Excelente, ${userData.nombre}!`;
-            titleEl.style.color = "#15803d";
+            titleEl.style.color = "var(--success)";
             summaryEl.textContent = "¡Dominas a la perfección los protocolos de enfermería y salud mental!";
         } else {
             soundLoser();
             titleEl.textContent = `📋 ¡Buen esfuerzo, ${userData.nombre}!`;
-            titleEl.style.color = "#b91c1c";
-            summaryEl.textContent = "Puedes revisar tu retroalimentación y volver a intentarlo.";
+            titleEl.style.color = "var(--danger)";
+            summaryEl.textContent = "Puedes repasar los conceptos de salud digital y volver a intentarlo.";
+        }
+
+        const recordPayload = {
+            nombre: userData.nombre,
+            apellidos: userData.apellidos,
+            sexo: userData.sexo,
+            carrera: userData.carrera,
+            sede: userData.sede,
+            fechaHora: userData.fechaHora || new Date().toLocaleString('es-NI'),
+            puntajeFinal: score,
+            aciertos: correctCount,
+            totalPreguntas: questions.length,
+            respuestas: studentResponses
+        };
+
+        await dbSaveRecord(recordPayload);
+        if (statusEl) {
+            statusEl.textContent = `✔ Guardado (${correctCount}/${questions.length} aciertos). Ya puedes exportar a todos los encuestados cuando terminen.`;
         }
     }
+
+    refreshDbCounter();
 </script>
 
 </body>
